@@ -63,7 +63,7 @@ if not os.path.exists(CFG.weights):
     raise FileNotFoundError(f"[ERROR] Checkpoint not found: {CFG.weights}")
 
 # ------------------ LOAD CHECKPOINT ------------------
-ckpt = torch.load(CFG.weights, map_location=CFG.device)
+ckpt = torch.load(CFG.weights, map_location=CFG.device, weights_only=True)
 
 # Restore config from checkpoint if available
 if isinstance(ckpt, dict) and "cfg" in ckpt:
