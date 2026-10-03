@@ -24,6 +24,7 @@ def get_loaders(data_root="data", label_csv="class_dict.csv", include_test_only=
     """
     transform = get_transforms()
     pin_memory = CFG.device.type == "cuda"
+    num_workers = min(CFG.num_workers, os.cpu_count() or 1)
 
     if include_test_only:
         test_set = SegmentationDataset(data_root, split="test", label_csv=label_csv, transform=transform)
@@ -31,7 +32,7 @@ def get_loaders(data_root="data", label_csv="class_dict.csv", include_test_only=
             test_set,
             batch_size=CFG.batch_size,
             shuffle=False,
-            num_workers=CFG.num_workers,
+            num_workers=num_workers,
             pin_memory=pin_memory
         )
         return test_loader
@@ -43,7 +44,7 @@ def get_loaders(data_root="data", label_csv="class_dict.csv", include_test_only=
         train_set,
         batch_size=CFG.batch_size,
         shuffle=True,
-        num_workers=CFG.num_workers,
+        num_workers=num_workers,
         pin_memory=pin_memory
     )
 
@@ -51,7 +52,7 @@ def get_loaders(data_root="data", label_csv="class_dict.csv", include_test_only=
         val_set,
         batch_size=CFG.batch_size,
         shuffle=False,
-        num_workers=CFG.num_workers,
+        num_workers=num_workers,
         pin_memory=pin_memory
     )
 
