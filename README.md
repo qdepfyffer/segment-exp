@@ -41,6 +41,8 @@ Convolutional Neural Networks
 
 ### 🧾 Training / Evaluation Command-Line Arguments
 
+*Note: If you're running this on a multi GPU machine under WSL2 you might need to prepend the launch command with CUDA_VISIBLE_DEVICES=0 if you're seeing NCCL errors.*
+
 | Argument              | Description                                                                 | Example                                     |
 |-----------------------|-----------------------------------------------------------------------------|---------------------------------------------|
 | `--architecture`      | Model architecture to use                                                   | `segformer`, `mask2former`, `setr`, `fcn`   |
