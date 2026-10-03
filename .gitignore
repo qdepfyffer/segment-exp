@@ -53,6 +53,7 @@ orange/
 pistachio/
 grape/
 tomato_segformer/
+outputs/
 
 # VSCode
 .vscode/
