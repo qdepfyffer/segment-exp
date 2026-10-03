@@ -23,6 +23,7 @@ def get_loaders(data_root="data", label_csv="class_dict.csv", include_test_only=
         loaders: tuple of train_loader, val_loader[, test_loader]
     """
     transform = get_transforms()
+    pin_memory = CFG.device.type == "cuda"
 
     if include_test_only:
         test_set = SegmentationDataset(data_root, split="test", label_csv=label_csv, transform=transform)
@@ -30,8 +31,8 @@ def get_loaders(data_root="data", label_csv="class_dict.csv", include_test_only=
             test_set,
             batch_size=CFG.batch_size,
             shuffle=False,
-            num_workers=0,
-            pin_memory=False
+            num_workers=CFG.num_workers,
+            pin_memory=pin_memory
         )
         return test_loader
 
@@ -42,16 +43,16 @@ def get_loaders(data_root="data", label_csv="class_dict.csv", include_test_only=
         train_set,
         batch_size=CFG.batch_size,
         shuffle=True,
-        num_workers=0,
-        pin_memory=False
+        num_workers=CFG.num_workers,
+        pin_memory=pin_memory
     )
 
     val_loader = DataLoader(
         val_set,
         batch_size=CFG.batch_size,
         shuffle=False,
-        num_workers=0,
-        pin_memory=False
+        num_workers=CFG.num_workers,
+        pin_memory=pin_memory
     )
 
     return train_loader, val_loader

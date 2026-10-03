@@ -81,3 +81,5 @@ build/
 *.swp
 *.swo
 *~
+# JetBrains
+.idea/

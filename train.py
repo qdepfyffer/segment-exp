@@ -112,7 +112,7 @@ for epoch in range(CFG.epochs):
     model.train()
     train_loss = []
 
-    for images, masks, _ in tqdm(train_loader, desc=f"[Epoch {epoch+1}/{CFG.epochs}] Training", disable=False):
+    for images, masks in tqdm(train_loader, desc=f"[Epoch {epoch+1}/{CFG.epochs}] Training", disable=False):
         images, masks = images.to(device), masks.to(device)
 
         optimizer.zero_grad()
@@ -131,7 +131,7 @@ for epoch in range(CFG.epochs):
         model.eval()
         val_loss = []
         with torch.no_grad():
-            for images, masks, _ in tqdm(val_loader, desc="Validating", disable=False):
+            for images, masks in tqdm(val_loader, desc="Validating", disable=False):
                 images, masks = images.to(device), masks.to(device)
                 outputs = get_logits(model(images))
                 outputs = nn.functional.interpolate(outputs, size=masks.shape[-2:], mode="bilinear", align_corners=False)
