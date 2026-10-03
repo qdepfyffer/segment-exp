@@ -67,9 +67,9 @@ device = CFG.device
 model = get_model()
 
 # Enable multi-GPU if available
-#if torch.cuda.device_count() > 1:
-    #print(f"[INFO] Using {torch.cuda.device_count()} GPUs")
-    #model = nn.DataParallel(model)
+if torch.cuda.device_count() > 1:
+    print(f"[INFO] Using {torch.cuda.device_count()} GPUs")
+    model = nn.DataParallel(model)
 
 model = model.to(device)
 
