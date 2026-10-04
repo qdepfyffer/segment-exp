@@ -54,6 +54,7 @@ pistachio/
 grape/
 tomato_segformer/
 outputs/
+scripts/
 
 # VSCode
 .vscode/
