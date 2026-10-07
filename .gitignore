@@ -55,6 +55,7 @@ grape/
 tomato_segformer/
 outputs/
 scripts/
+resources/
 
 # VSCode
 .vscode/
